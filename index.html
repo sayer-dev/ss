@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -52,6 +51,11 @@ p{
     background:#ffe9bd;
 }
 
+.flower-btn:disabled{
+    opacity:0.4;
+    cursor:not-allowed;
+}
+
 .viewer{
     display:none;
     position:fixed;
@@ -79,61 +83,70 @@ p{
     color:#2b1b10;
     cursor:pointer;
 }
-</style>
 
+.note-box{
+    max-width:700px;
+    margin:40px auto;
+    background:#49b3d3;
+    color:#000000;
+    padding:30px;
+    border-radius:18px;
+    font-size:18px;
+    line-height:1.7;
+    text-align:left;
+}
+</style>
 </head>
 
 <body>
 
-<h1>some strange little things in nature</h1>
-
+<h1>a collection of strange things nature got away with</h1>
 <p>which one catches your eye?</p>
 
 <div class="garden">
 
-<button class="flower-btn" onclick="showCard('queen.png')">
-🌙
-</button>
+<button class="flower-btn" onclick="showCard('queen.png')">🌙</button>
+<button class="flower-btn" onclick="showCard('dancing.png')">💃</button>
+<button class="flower-btn" onclick="showCard('chocolate.png')">🍫</button>
+<button class="flower-btn" onclick="showCard('gloriosa.png')">🔥</button>
+<button class="flower-btn" onclick="showCard('spider.png')">🕸️</button>
+<button class="flower-btn" onclick="showCard('penguin.png')">🐧</button>
+<button class="flower-btn" onclick="showCard('sunflower.png')">🌻</button>
 
-<button class="flower-btn" onclick="showCard('dancing.png')">
-💃
-</button>
-
-<button class="flower-btn" onclick="showCard('chocolate.png')">
-🍫
-</button>
-
-<button class="flower-btn" onclick="showCard('gloriosa.png')">
-🔥
-</button>
-
-<button class="flower-btn" onclick="showCard('spider.png')">
-🕸️
-</button>
-
-<button class="flower-btn" onclick="showCard('penguin.png')">
-🐧
-</button>
-
-<button class="flower-btn" onclick="showCard('sunflower.png')">
-🌻
-</button>
+<button id="noteBtn" class="flower-btn" onclick="showNote()" disabled>🔒</button>
 
 </div>
 
 <div id="viewer" class="viewer">
+    <button class="close" onclick="closeCard()">close</button>
+    <img id="cardImage" src="">
+</div>
 
-<button class="close" onclick="closeCard()">
-close
-</button>
+<div id="noteViewer" class="viewer">
+    <button class="close" onclick="closeNote()">close</button>
 
-<img id="cardImage" src="">
+    <div class="note-box">
+        <h2>for diep</h2>
 
+        <p>
+            Did you learn anything new with it? was it fun? I don't know, just wanted to lighten you up a little
+        I will try to be a little more romantic and I hope you won't feel it like its pretentious.
+        </p>
+    </div>
 </div>
 
 <script>
+let viewedCards = new Set();
 
 function showCard(imagePath){
+    viewedCards.add(imagePath);
+
+    if(viewedCards.size === 7){
+        const noteBtn = document.getElementById("noteBtn");
+        noteBtn.disabled = false;
+        noteBtn.innerHTML = "💌";
+    }
+
     document.getElementById("cardImage").src = imagePath;
     document.getElementById("viewer").style.display = "block";
 }
@@ -143,6 +156,13 @@ function closeCard(){
     document.getElementById("cardImage").src = "";
 }
 
+function showNote(){
+    document.getElementById("noteViewer").style.display = "block";
+}
+
+function closeNote(){
+    document.getElementById("noteViewer").style.display = "none";
+}
 </script>
 
 </body>
