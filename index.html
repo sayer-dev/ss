@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>weird little garden</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Georgia, serif;
+    background:linear-gradient(135deg,#0f1f16,#1f3324);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+h1{
+    font-weight:normal;
+    margin-bottom:8px;
+}
+
+p{
+    color:#cfcfcf;
+    margin-bottom:30px;
+}
+
+.garden{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:15px;
+    max-width:700px;
+    margin:0 auto;
+}
+
+.flower-btn{
+    background:#f3e2bd;
+    color:#2b1b10;
+    border:none;
+    border-radius:18px;
+    padding:20px;
+    font-size:32px;
+    cursor:pointer;
+    box-shadow:0 6px 16px rgba(0,0,0,0.25);
+    transition:0.25s;
+}
+
+.flower-btn:hover{
+    transform:translateY(-4px);
+    rotate:3deg;
+    background:#ffe9bd;
+}
+
+.viewer{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.88);
+    z-index:10;
+    padding:20px;
+    overflow:auto;
+}
+
+.viewer img{
+    max-width:95%;
+    max-height:85vh;
+    border-radius:18px;
+    box-shadow:0 0 25px rgba(255,255,255,0.25);
+}
+
+.close{
+    display:block;
+    margin:15px auto;
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    background:#f3e2bd;
+    color:#2b1b10;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>some strange little things in nature</h1>
+
+<p>which one catches your eye?</p>
+
+<div class="garden">
+
+<button class="flower-btn" onclick="showCard('queen.png')">
+🌙
+</button>
+
+<button class="flower-btn" onclick="showCard('dancing.png')">
+💃
+</button>
+
+<button class="flower-btn" onclick="showCard('chocolate.png')">
+🍫
+</button>
+
+<button class="flower-btn" onclick="showCard('gloriosa.png')">
+🔥
+</button>
+
+<button class="flower-btn" onclick="showCard('spider.png')">
+🕸️
+</button>
+
+<button class="flower-btn" onclick="showCard('penguin.png')">
+🐧
+</button>
+
+<button class="flower-btn" onclick="showCard('sunflower.png')">
+🌻
+</button>
+
+</div>
+
+<div id="viewer" class="viewer">
+
+<button class="close" onclick="closeCard()">
+close
+</button>
+
+<img id="cardImage" src="">
+
+</div>
+
+<script>
+
+function showCard(imagePath){
+    document.getElementById("cardImage").src = imagePath;
+    document.getElementById("viewer").style.display = "block";
+}
+
+function closeCard(){
+    document.getElementById("viewer").style.display = "none";
+    document.getElementById("cardImage").src = "";
+}
+
+</script>
+
+</body>
+</html>
